@@ -27,22 +27,56 @@ const setupCanvas = function(canvas) {
     canvas.height = h * dpi 
     canvas.style.width = w + "px"
     canvas.style.height = h + "px"
+
+    // what kind of canvas are we referring to here - 2d? 3d? 
+    const context = canvas.getContext("2d")
+    context.scale(dpi, dpi)
+
+    // adding "styles" to our canvas drawing
+    context.fillStyle = "green"
+    context.strokeStyle = "green"
+    context.lineWidth = 60
+    context.lineCap = "round"
+    context.lineJoin = "round"
+    
 } 
+
+// drawing 
+const startDraw = function(canvas) {
+    const context = canvas.getContext("2d")
+    context.strokeStyle = "yellow"
+}
+
+// create drawing tool function - based on canvas, x, and y 
+const moveDraw = function(canvas, x, y) {
+    const context = canvas.getContext("2d")
+    context.beginPath()
+    context.moveTo(x, y)
+    context.lineTo(x, y)
+    context.stroke()
+}
+
 
 setupCanvas(canvasTag)
 
 
-document.addEventListener("mousedown", function() {
+document.addEventListener("mousedown", function(event) {
     growCursor()
+    startDraw(canvasTag)
+    moveDraw(canvasTag, event.pageX, event.pageY)
 })
 
 document.addEventListener("mouseup", function() {
     shrinkCursor()
+    const context = canvasTag.getContext("2d")
+    context.strokeStyle = "green" 
 })
 
 document.addEventListener("mousemove", function(event){
     console.log(event)
     //event.pageX
-    moveCursor(event.pageX, event.pageY)
     //event.pageY
+
+    moveCursor(event.pageX, event.pageY)
+    moveDraw(canvasTag, event.pageX, event.pageY)
 })
