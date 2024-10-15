@@ -10,5 +10,23 @@ const shrinkCursor = function() {
     cursor.classList.remove("on-click")
 }
 
-growCursor()
-shrinkCursor()
+// move cursor based on coordinates 
+const moveCursor = function(x, y) {
+    cursor.style.left = x + "px"
+    cursor.style.top = y + "px"
+}
+
+document.addEventListener("mousedown", function() {
+    growCursor()
+})
+
+document.addEventListener("mouseup", function() {
+    shrinkCursor()
+})
+
+document.addEventListener("mousemove", function(event){
+    console.log(event)
+    //event.pageX
+    moveCursor(event.pageX, event.pageY)
+    //event.pageY
+})
