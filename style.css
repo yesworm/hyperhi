@@ -16,7 +16,7 @@ div.cursor {
 
 }
 
-div.cursor.is-down {
+div.cursor.on-click {
     width: 80px;
     height: 80px;
 }
