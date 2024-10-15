@@ -1,4 +1,5 @@
 const cursor = document.querySelector("div.cursor")
+const canvasTag = document.querySelector("canvas.in")
 
 // when I hold mouse down, make cursor bigger
 const growCursor = function() {
@@ -15,6 +16,21 @@ const moveCursor = function(x, y) {
     cursor.style.left = x + "px"
     cursor.style.top = y + "px"
 }
+
+//set up canvas 
+const setupCanvas = function(canvas) {
+    const w = window.innerWidth
+    const h = window.innerHeight
+    const dpi = window.devicePixelRatio
+
+    canvas.width = w * dpi 
+    canvas.height = h * dpi 
+    canvas.style.width = w + "px"
+    canvas.style.height = h + "px"
+} 
+
+setupCanvas(canvasTag)
+
 
 document.addEventListener("mousedown", function() {
     growCursor()
