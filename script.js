@@ -22,7 +22,7 @@ const moveCursor = function(x, y) {
 //set up canvas 
 const setupCanvas = function(canvas) {
     // making sure the canvas is the entire content not just 100vh
-    
+
     const bodyTag = document.querySelector("body")
 
     const w = window.innerWidth
@@ -40,23 +40,28 @@ const setupCanvas = function(canvas) {
     context.scale(dpi, dpi)
 
     // adding "styles" to our canvas drawing
-    context.fillStyle = "green"
-    context.strokeStyle = "green"
+    context.fillStyle = "#ffffff"
+    context.strokeStyle = "#000000"
     context.lineWidth = 60
     context.lineCap = "round"
     context.lineJoin = "round"
+
+    context.rect(0, 0, w, h)
+    context.fill()
     
 } 
 
 // drawing based on the canvas and based on x & y 
 const startDraw = function(canvas, x, y) {
     const context = canvas.getContext("2d")
+    /*
     // adding array of random colours to choose from
     const colors = ["red", "blue", "yellow", "green"]
     const randomNum = Math.floor(Math.random() * colors.length)
 
     // adding the strokestyle ability to choose from array of colors 
     context.strokeStyle = colors[randomNum]
+    */
 
     context.moveTo(x, y)
     
