@@ -21,8 +21,12 @@ const moveCursor = function(x, y) {
 
 //set up canvas 
 const setupCanvas = function(canvas) {
+    // making sure the canvas is the entire content not just 100vh
+    
+    const bodyTag = document.querySelector("body")
+
     const w = window.innerWidth
-    const h = window.innerHeight
+    const h = bodyTag.offsetHeight
     const dpi = window.devicePixelRatio
 
     // canvas adjusting for retina devices
@@ -55,6 +59,9 @@ const startDraw = function(canvas, x, y) {
     context.strokeStyle = colors[randomNum]
 
     context.moveTo(x, y)
+    
+    // adding a brand new line instead of continuing previous path
+    context.beginPath()
 }
 
 // create drawing tool function - based on canvas, x, and y 
